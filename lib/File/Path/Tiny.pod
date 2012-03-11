@@ -4,17 +4,17 @@ File::Path::Tiny - recursive versions of mkdir() and rmdir() without as much ove
 
 =head1 VERSION
 
-This document describes File::Path::Tiny version 0.1
+This document describes File::Path::Tiny version 0.2
 
 =head1 SYNOPSIS
 
     use File::Path::Tiny;
 
-    if(!File::Path::Tiny:mk($path)) {
+    if(!File::Path::Tiny::mk($path)) {
         die "Could not make path '$path': $!";
     }
     
-    if(!File::Path::Tiny:rm($path)) {
+    if(!File::Path::Tiny::rm($path)) {
         die "Could not remove path '$path': $!";
     }
 

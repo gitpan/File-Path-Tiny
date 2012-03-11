@@ -1,5 +1,10 @@
 Revision history for File-Path-Tiny
 
+0.2  Sun Mar 11 16:50:44 2012
+    rt 51728 Missing colon in synopsis
+    rt 75688 using deprecated for qw() in 00.load.t
+    perltidy
+
 0.1  Mon Nov 17 20:09:59 2008
        Initial release.
 
