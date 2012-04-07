@@ -1,10 +1,10 @@
 --- #YAML:1.0
 name:               File-Path-Tiny
-version:            0.2
+version:            0.3
 abstract:           recursive versions of mkdir() and rmdir() without as much overhead as File::Path
 author:
     - Daniel Muey <http://drmuey.com/cpan_contact.pl>
-license:            unknown
+license:            perl
 distribution_type:  module
 configure_requires:
     ExtUtils::MakeMaker:  0

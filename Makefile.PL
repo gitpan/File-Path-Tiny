@@ -8,6 +8,7 @@ WriteMakefile(
     VERSION_FROM        => 'lib/File/Path/Tiny.pm',
     ABSTRACT_FROM       => 'lib/File/Path/Tiny.pod',
     PL_FILES            => {},
+    LICENSE => 'perl',
     PREREQ_PM => {
         'Test::More' => 0,
     },

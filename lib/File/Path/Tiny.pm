@@ -1,6 +1,6 @@
 package File::Path::Tiny;
 
-$File::Path::Tiny::VERSION = 0.2;
+$File::Path::Tiny::VERSION = 0.3;
 
 sub mk {
     my ( $path, $mask ) = @_;
@@ -30,21 +30,28 @@ sub rm {
     my ($path) = @_;
     if ( -e $path && !-d $path ) { $! = 20; return; }
     return 2 if !-d $path;
-    opendir( DIR, $path ) or return;
-    my @contents = grep { $_ ne '.' && $_ ne '..' } readdir(DIR);
-    closedir DIR;
-    require File::Spec if @contents;
-    for my $thing (@contents) {
-        my $long = File::Spec->catdir( $path, $thing );
-        if ( !-l $long && -d $long ) {
-            rm($long) or return;
-        }
-        else {
-            unlink $long or return;
-        }
-    }
+    empty_dir($path) or return;
     rmdir($path) or return;
     return 1;
+}
+
+sub empty_dir {
+     my ($path) = @_;
+     if ( -e $path && !-d $path ) { $! = 20; return; }    
+     opendir( DIR, $path ) or return;
+     my @contents = grep { $_ ne '.' && $_ ne '..' } readdir(DIR);
+     closedir DIR;
+     require File::Spec if @contents;
+     for my $thing (@contents) {
+         my $long = File::Spec->catdir( $path, $thing );
+         if ( !-l $long && -d $long ) {
+             rm($long) or return;
+         }
+         else {
+             unlink $long or return;
+         }
+     }
+     return 1;
 }
 
 1;
