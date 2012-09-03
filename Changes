@@ -1,5 +1,8 @@
 Revision history for File-Path-Tiny
 
+0.4  Mon Sep  3 17:50:41 2012
+    rt 79345 (thanks Gian!): Failed to recursively create dir if the first part solves to false
+
 0.3   Fri Apr  6 19:39:52 2012
     rt 76061 No LICENSE in META.yml
     rt 68950 break out rm() code into empty() type function, use it in rm()
