@@ -1,4 +1,4 @@
-use Test::More tests => 16;
+use Test::More tests => 19;
 
 use lib '../lib';
 
@@ -39,6 +39,16 @@ SKIP: {
         ok( !File::Path::Tiny::mk("foo/bar/file"), "make already existing non dir - return false" );
         ok( $! == 20,                              "make already existing file - errno" );
     }
+}
+
+SKIP: {
+    eval 'require File::Temp;';
+    skip 'Absolute path test requires File::Temp', 3 if $@;
+    my $dir = File::Temp->newdir();
+    my $new = "$dir/foo/bar/baz";
+    ok( File::Path::Tiny::mk($new),      "make absolute path - return true" );
+    ok( -d $new,                         "make absolute path - path recursively created" );
+    ok( File::Path::Tiny::mk($new) == 2, "make already existing absolute path dir" );
 }
 
 mkdir 'foo/bar/dir';

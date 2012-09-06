@@ -1,6 +1,6 @@
 package File::Path::Tiny;
 
-$File::Path::Tiny::VERSION = 0.4;
+$File::Path::Tiny::VERSION = 0.5;
 
 sub mk {
     my ( $path, $mask ) = @_;
@@ -10,7 +10,7 @@ sub mk {
     $mask = oct($mask) if substr( $mask, 0, 1 ) eq '0';
     require File::Spec;
     my ( $progressive, @parts ) = File::Spec->splitdir($path);
-    if ( !defined $progressive ) {    # no "|| $progressive eq ''" because, per File::Spec->splitdir POD: empty directory names ('') can be returned, because these are significant on some OSes.
+    if ( !defined $progressive || $progressive eq '' ) {
         $progressive = File::Spec->catdir( $progressive, shift(@parts) );
     }
     if ( !-d $progressive ) {
