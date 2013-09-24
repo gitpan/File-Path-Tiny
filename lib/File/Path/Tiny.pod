@@ -4,7 +4,7 @@ File::Path::Tiny - recursive versions of mkdir() and rmdir() without as much ove
 
 =head1 VERSION
 
-This document describes File::Path::Tiny version 0.5
+This document describes File::Path::Tiny version 0.6
 
 =head1 SYNOPSIS
 
@@ -85,6 +85,10 @@ Its parents, /, /foo, and /foo/bar are *not* touched.
 Takes a single path to recursively empty  but not remove.
 
 Returns false when there is a problem.
+
+=head2 File::Path::Tiny::mk_parent()
+
+Like mk() but recursively creates the parent. e.g. given “foo/bar/baz.txt” creates foo/bar.
 
 =head1 DIAGNOSTICS
 

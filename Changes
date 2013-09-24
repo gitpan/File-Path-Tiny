@@ -1,5 +1,8 @@
 Revision history for File-Path-Tiny
 
+0.6  Tue Sep 24 05:51:54 2013
+    add mk_parent()
+
 0.5  Thu Sep  6 07:38:06 2012
     rt 79472 (thanks Lachlan!) fix absolute path bug introduced in 0.4
     

@@ -1,6 +1,6 @@
 package File::Path::Tiny;
 
-$File::Path::Tiny::VERSION = 0.5;
+$File::Path::Tiny::VERSION = 0.6;
 
 sub mk {
     my ( $path, $mask ) = @_;
@@ -52,6 +52,22 @@ sub empty_dir {
         }
     }
     return 1;
+}
+
+sub mk_parent {
+    my ( $path, $mode ) = @_;
+    $path =~ s{/+$}{};
+
+    require File::Spec;
+    my ( $v, $d, $f ) = File::Spec->splitpath( $path, 1 );
+    my @p = File::Spec->splitdir($d);
+
+    # pop() is probably cheaper here, benchmark? $d = File::Spec->catdir(@p[0--$#p-1]);
+    pop @p;
+    $d = File::Spec->catdir(@p);
+
+    my $parent = File::Spec->catpath( $v, $d, $f );
+    return mk( $parent, $mode );
 }
 
 1;
