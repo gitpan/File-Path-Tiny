@@ -1,6 +1,9 @@
 package File::Path::Tiny;
 
-$File::Path::Tiny::VERSION = 0.6;
+use strict;
+use warnings;
+
+$File::Path::Tiny::VERSION = 0.7;
 
 sub mk {
     my ( $path, $mask ) = @_;

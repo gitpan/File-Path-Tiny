@@ -1,10 +1,12 @@
+=encoding utf8
+
 =head1 NAME
 
 File::Path::Tiny - recursive versions of mkdir() and rmdir() without as much overhead as File::Path
 
 =head1 VERSION
 
-This document describes File::Path::Tiny version 0.6
+This document describes File::Path::Tiny version 0.7
 
 =head1 SYNOPSIS
 
@@ -34,9 +36,9 @@ Here are some things L<File::Path> has/does that this module attempts to do with
 
 Backwards compatibility brings in a lot of code and logic that we don't need from here on out.
 
-=item * chdir's
+=item * chdir()s
 
-It does a ton of chdir's which could leave you somewhere you're not planning on being and requires much more overhead to do.
+It does a ton of chdir()s which could leave you somewhere you're not planning on being and requires much more overhead to do.
 
 =item * can croak not allowing you to detect and handle failure
 
@@ -50,7 +52,7 @@ Just let me do the output how I want. (Nothing, As HTML, print to a filehandle, 
 
 Just keep it simple and detect failure via a boolean check and do what I want with the error. See L</"How can I make/remove multiple paths?">
 
-=item * According to its POD, removing a tree is apparently not safe unless you tell it to be with the 'safe' or 'keep_root' attributes.
+=item * According to its POD, removing a tree is apparently not safe unless you tell it to be with the ‘safe’ or 'keep_root' attributes.
 
 Seems like that should just happen, I don't want to worry about accidentally removing / when I pass it /tmp
 
@@ -66,17 +68,17 @@ Takes a single path (like L<mkdir>()) to recursively create and, optionally, a m
 
 Mask defaults to 0700 (also like L<mkdir>())
 
-Returns false if it could not be made, true otherwise (returns '2' if it is -d already)
+Returns false if it could not be made, true otherwise (returns ‘2’ if it is -d already)
 
-It is recursive in the sense that given foo/bar/baz as the path to create all 3 will be created if necessary.
+It is recursive in the sense that given “foo/bar/baz” as the path to create all 3 will be created if necessary.
 
 =head2 File::Path::Tiny::rm()
 
 Takes a single path (like L<rmdir>()) to recursively empty and remove.
 
-Returns false if it could not be emptied or removed, true otherwise. (returns '2' if it is !-d already)
+Returns false if it could not be emptied or removed, true otherwise. (returns ‘2’ if it is !-d already)
 
-It is recursive in the sense that given /foo/bar/baz as the path to remove it will recursively empty 'baz' and then remove it from /foo/bar.
+It is recursive in the sense that given “/foo/bar/baz” as the path to remove it will recursively empty ‘baz’ and then remove it from /foo/bar.
 
 Its parents, /, /foo, and /foo/bar are *not* touched.
 
@@ -102,7 +104,7 @@ If the functions ever return false, $! will have been set either explicitly or b
 
 For simplicity sake && ::Tiny status this module must be very very very simple.
 
-That said it is also very simple to do muliple paths:
+That said it is also very simple to do multiple paths:
 
     for my $path (@paths) {
         File::Path::Tiny::::mk($path) or _my_handle_failed_mk($path, $!);    
